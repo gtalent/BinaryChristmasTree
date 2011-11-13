@@ -13,15 +13,11 @@ func (me *color) toUint32() uint32 {
 	return (uint32(me.r) << 24) | (uint32(me.g) << 16) | (uint32(me.b) << 8)
 }
 
-func encode(val uint, bits int) string {
+func encode(val uint, bits uint) string {
 	str := ""
-	for i := 0; i < bits; i++ {
+	for i := uint(0); i < bits; i++ {
 		r := val & uint(math.Pow(2, float64(i)))
-		if r == 0 {
-			str = "0" + str
-		} else {
-			str = "1" + str
-		}
+		str = string(r>>i+48) + str
 	}
 	return str
 }
@@ -70,7 +66,7 @@ func traverse(tree []node, pt uint8) {
 	}
 }
 
-func addNode(nodePt uint8, tree []node, color color) ([]node) {
+func addNode(nodePt uint8, tree []node, color color) []node {
 	if tree[nodePt].color > color.toUint32() {
 		if tree[nodePt].left != 0 {
 			tree = addNode(tree[nodePt].left, tree, color)
