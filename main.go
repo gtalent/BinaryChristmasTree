@@ -10,7 +10,7 @@ type color struct {
 }
 
 func (me *color) toUint32() uint32 {
-	return (uint32(me.r) << 16) | (uint32(me.g) << 8) | uint32(me.b)
+	return (uint32(me.r) << 24) | (uint32(me.g) << 16) | (uint32(me.b) << 8)
 }
 
 func encode(val uint, bits int) string {
