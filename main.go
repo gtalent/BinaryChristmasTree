@@ -18,9 +18,9 @@ func encode(val uint, bits int) string {
 	for i := 0; i < bits; i++ {
 		r := val & uint(math.Pow(2, float64(i)))
 		if r == 0 {
-			str += "0"
+			str = "0" + str
 		} else {
-			str += "1"
+			str = "1" + str
 		}
 	}
 	return str
