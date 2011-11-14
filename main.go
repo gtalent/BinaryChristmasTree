@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 type color struct {
@@ -16,8 +15,7 @@ func (me *color) toUint32() uint32 {
 func encode(val uint, bits uint) string {
 	str := ""
 	for i := uint(0); i < bits; i++ {
-		r := val & uint(math.Pow(2, float64(i)))
-		str = string(r>>i+48) + str
+		str = string((val>>i)&1+48) + str
 	}
 	return str
 }
