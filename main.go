@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 )
 
 type color struct {
@@ -12,7 +13,7 @@ func (me *color) toUint32() uint32 {
 	return (uint32(me.r) << 24) | (uint32(me.g) << 16) | (uint32(me.b) << 8)
 }
 
-func encode(val uint, bits uint) string {
+func encode(val, bits uint) string {
 	str := ""
 	for i := uint(0); i < bits; i++ {
 		str = string((val>>i)&1+48) + str
@@ -36,13 +37,14 @@ func (me *node) toBinary() string {
 func main() {
 	tree := make([]node, 1)
 	var colors []color
-	colors = append(colors, color{255, 0, 0})
-	colors = append(colors, color{0, 255, 0})
-	colors = append(colors, color{0, 0, 255})
-	colors = append(colors, color{255, 255, 0})
-	colors = append(colors, color{0, 255, 255})
-	colors = append(colors, color{255, 0, 255})
-	colors = append(colors, color{255, 255, 255})
+	f := func() byte { return byte(rand.Intn(255)) }
+	colors = append(colors, color{f(), f(), f()})
+	colors = append(colors, color{f(), f(), f()})
+	colors = append(colors, color{f(), f(), f()})
+	colors = append(colors, color{f(), f(), f()})
+	colors = append(colors, color{f(), f(), f()})
+	colors = append(colors, color{f(), f(), f()})
+	colors = append(colors, color{f(), f(), f()})
 
 	for i := 0; i < len(colors); i++ {
 		tree = addNode(0, tree, colors[i])
