@@ -38,13 +38,9 @@ func main() {
 	tree := make([]node, 1)
 	var colors []color
 	f := func() byte { return byte(rand.Intn(255)) }
-	colors = append(colors, color{f(), f(), f()})
-	colors = append(colors, color{f(), f(), f()})
-	colors = append(colors, color{f(), f(), f()})
-	colors = append(colors, color{f(), f(), f()})
-	colors = append(colors, color{f(), f(), f()})
-	colors = append(colors, color{f(), f(), f()})
-	colors = append(colors, color{f(), f(), f()})
+	for i := 0; i < 256; i++ {
+		colors = append(colors, color{f(), f(), f()})
+	}
 
 	for i := 0; i < len(colors); i++ {
 		tree = addNode(0, tree, colors[i])
