@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"math/rand"
 )
@@ -35,10 +36,12 @@ func (me *node) toBinary() string {
 }
 
 func main() {
+	nodes := flag.Int("n", 8, "Number of nodes in the tree")
+	flag.Parse()
 	tree := make([]node, 1)
 	var colors []color
 	f := func() byte { return byte(rand.Intn(255)) }
-	for i := 0; i < 256; i++ {
+	for i := 0; i < *nodes; i++ {
 		colors = append(colors, color{f(), f(), f()})
 	}
 
