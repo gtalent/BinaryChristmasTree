@@ -30,7 +30,7 @@ type node struct {
 
 func (me *node) toBinary() string {
 	str := encode(uint(me.left), 8)
-	str += encode(uint(me.color), 32)
+	str += encode(uint(me.color) >> 8, 24)
 	str += encode(uint(me.right), 8)
 	return str
 }
